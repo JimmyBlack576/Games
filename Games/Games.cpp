@@ -4,9 +4,27 @@
 
 using namespace std;
 
-const int SIZE = 8;
+const int SIZE = 8;//Размер сетки
 int arrx[8] = { 1,2,2,1,-1,-2,-2,-1 };
 int arry[8] = { 2,1,-1,-2,-2,-1,1,2 };
+//Функция отображения доски
+void print_arr(int arr[][SIZE]);
+//Рекурсивная функция хода коня
+void Knight(int arr[][SIZE], int num, int i0, int j0);
+
+
+
+int main()
+{
+	int x, y;
+	cout << "Specify the cell in which the horse should be (1-8): \n";
+	cout << "X: ";
+	cin >> x;
+	cout << "Y: ";
+	cin >> y;
+	int deck[SIZE][SIZE] = {};
+	Knight(deck, 1, y-1 ,x-1);
+}
 
 void print_arr(int arr[][SIZE]) {
 	for (int i = 0; i < SIZE; i++) {
@@ -19,8 +37,8 @@ void print_arr(int arr[][SIZE]) {
 
 void Knight(int arr[][SIZE], int num, int i0, int j0) {
 	arr[i0][j0] = num++;
-	print_arr(arr);
-	system("pause");
+	//print_arr(arr);
+	//system("pause");    // для просмотра хода пошагово, раскомментировать 
 	for (int i = 0; i < 8; i++) {
 		int inew = i0 + arry[i];
 		int jnew = j0 + arrx[i];
@@ -35,10 +53,3 @@ void Knight(int arr[][SIZE], int num, int i0, int j0) {
 		arr[inew][jnew] = 0;
 	}
 }
-
-void main()
-{
-	int deck[SIZE][SIZE] = {};
-	Knight(deck, 1, 0, 0);
-}
-
